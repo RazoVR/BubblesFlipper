@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: cc94087585867ae4ab1bc264cad4a80f, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -191,7 +191,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 6500
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +398,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1956997650 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1264444816669775474, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+  m_PrefabInstance: {fileID: 1315013281245753587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2009264102
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,10 +444,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3171967282482615896, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
       propertyPath: m_Name
       value: Ball Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4848697855596328633, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: speed
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848697855596328633, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1956997650}
+    - target: {fileID: 7515877162417463318, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d7dd8250be4625e4fbb4112fec170bb9, type: 2}
     - target: {fileID: 7725494187950016757, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -481,6 +518,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7725494187950016757, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725494187950016757, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840284743934646640, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840284743934646640, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

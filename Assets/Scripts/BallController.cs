@@ -1,36 +1,33 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public float speed = 1f;
-    private Rigidbody rigid;
+    public float speed = 10f;
+    public Camera camera;
+    private Rigidbody rb;
+
     void Start()
     {
-         rigid = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if(Input.GetAxis("Horizontal") > 0)
-        {
-            rigid.AddForce(Vector3.right * speed);
-        }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            rigid.AddForce(-Vector3.right * speed);
-        }
+        Vector3 forward = camera.transform.forward;
+        Vector3 right = camera.transform.right;
 
+        // Womp womp l'axe Y
+        forward.y = 0;
+        right.y = 0;
 
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            rigid.AddForce(Vector3.forward * speed);
-        }
+        forward.Normalize();
+        right.Normalize();
 
-        else if (Input.GetAxis("Vertical") < 0)
-        {
-            rigid.AddForce(-Vector3.forward * speed);
-        }
+        Vector3 movement = (forward * moveVertical + right * moveHorizontal).normalized;
+
+        rb.AddForce(movement * speed);
     }
 }
