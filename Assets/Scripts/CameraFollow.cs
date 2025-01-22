@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public BallController ballController;
     public Transform target;
     public float distance = 5.0f;
     public float xSpeed = 120.0f;
@@ -30,20 +31,18 @@ public class CameraController : MonoBehaviour
 
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
+            Quaternion rotation = Quaternion.Euler(y, x, ballController.ballDirection * ballController.currentSpeed / 5);
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
 
-            RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
+            if (Physics.Linecast(target.position, transform.position, out RaycastHit hit))
             {
                 distance -= hit.distance;
             }
 
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            Vector3 negDistance = new(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + target.position;
 
-            transform.rotation = rotation;
-            transform.position = position;
+            transform.SetPositionAndRotation(position, rotation);
         }
     }
 
