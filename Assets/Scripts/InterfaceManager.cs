@@ -6,7 +6,12 @@ public class InterfaceManager : MonoBehaviour
 {
     public InputsController inputsController;
     public MouseRotation mouseRotation;
-    public Image blackImage;
+    public Image cameraImage;
+
+    public Sprite number3;
+    public Sprite number2;
+    public Sprite number1;
+    public Sprite goText;
 
     private void Start()
     {
@@ -22,10 +27,10 @@ public class InterfaceManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        Color color = blackImage.color;
+        Color color = cameraImage.color;
         color.a = 1f;
 
-        float fadeDuration = 2f;
+        float fadeDuration = 1f;
         float elapsedTime = 0f;
 
         while (elapsedTime < fadeDuration)
@@ -33,18 +38,15 @@ public class InterfaceManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
             color.a = alpha;
-            blackImage.color = color;
 
-            if (blackImage.color.a < 0.5f)
-            {
-                blackImage.raycastTarget = false;
-            }
+            cameraImage.color = color;
 
             yield return null;
         }
 
         color.a = 0f;
-        blackImage.color = color;
+        cameraImage.color = color;
+        cameraImage.raycastTarget = false;
 
         yield return null;
     }
@@ -56,6 +58,9 @@ public class InterfaceManager : MonoBehaviour
 
     private IEnumerator PlayGameCoroutine()
     {
+        cameraImage.sprite = number3;
+        cameraImage.color = new(1f, 1f, 1f, 0.25f);
+
         Camera.main.transform.GetPositionAndRotation(out Vector3 startPosition, out Quaternion startRotation);
         float startSpeed = mouseRotation.animator.speed;
 
@@ -70,6 +75,17 @@ public class InterfaceManager : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
+
+            if (elapsedTime > 1f && elapsedTime < 2f)
+            {
+                cameraImage.sprite = number2;
+            }
+
+            else if (elapsedTime > 2f && elapsedTime < 3f)
+            {
+                cameraImage.sprite = number1;
+            }
+
             float t = elapsedTime / duration;
 
             // OutExpo animation
@@ -84,9 +100,32 @@ public class InterfaceManager : MonoBehaviour
 
         // Validate
 
+        cameraImage.sprite = goText;
         mouseRotation.animator.speed = 0f;
         Camera.main.transform.SetPositionAndRotation(targetPosition, targetRotation);
 
         inputsController.playing = true;
+
+        // And fade out the cameraImage
+
+        Color color = cameraImage.color;
+        color.a = 0.25f;
+
+        float fadeDuration = 1f;
+        elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(0.25f, 0f, elapsedTime / fadeDuration);
+            color.a = alpha;
+
+            cameraImage.color = color;
+
+            yield return null;
+        }
+
+        color.a = 0f;
+        cameraImage.color = color;
     }
 }
