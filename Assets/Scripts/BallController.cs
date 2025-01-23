@@ -26,7 +26,7 @@ public class BallController : MonoBehaviour
     {
         // Move the ball
 
-        MoveBall(inputsController.horizontalInput, inputsController.verticalInput);
+        MoveBall(inputsController.keyboardHorizontalInput, inputsController.keyboardVerticalInput);
 
         // Set the tilt
 

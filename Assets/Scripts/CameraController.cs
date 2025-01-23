@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XInput;
 
 public class CameraController : MonoBehaviour
 {
@@ -112,8 +111,8 @@ public class CameraController : MonoBehaviour
     {
         // Prepare the camera x and y rotation angles
 
-        x += inputsController.horizontalInput * xSpeed * Time.deltaTime;
-        y -= inputsController.verticalInput * ySpeed * Time.deltaTime;
+        x += inputsController.mouseHorizontalInput * xSpeed * Time.deltaTime;
+        y -= inputsController.mouseVerticalInput * ySpeed * Time.deltaTime;
 
         // Clamp the camera y angle
 

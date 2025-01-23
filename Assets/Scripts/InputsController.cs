@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class InputsController : MonoBehaviour
 {
-    [HideInInspector]
-    public float horizontalInput;
-
-    [HideInInspector]
-    public float verticalInput;
-
-    [HideInInspector]
-    public float scrollInput;
+    [HideInInspector] public float keyboardHorizontalInput;
+    [HideInInspector] public float keyboardVerticalInput;
+    [HideInInspector] public float mouseHorizontalInput;
+    [HideInInspector] public float mouseVerticalInput;
+    [HideInInspector] public float scrollInput;
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        keyboardHorizontalInput = Input.GetAxis("Horizontal");
+        keyboardVerticalInput = Input.GetAxis("Vertical");
+
+        mouseHorizontalInput = Input.GetAxis("Mouse X");
+        mouseVerticalInput = Input.GetAxis("Mouse Y");
+
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
     }
 }

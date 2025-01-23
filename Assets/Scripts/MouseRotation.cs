@@ -18,7 +18,7 @@ public class MouseRotation : MonoBehaviour
     void FixedUpdate()
     {
         // Combine the input into a direction vector
-        Vector3 inputDirection = new(inputsController.horizontalInput, 0, inputsController.verticalInput);
+        Vector3 inputDirection = new(inputsController.keyboardHorizontalInput, 0, inputsController.keyboardVerticalInput);
 
         if (inputDirection.sqrMagnitude > 0.01f) // Avoid rotating when there's no input
         {
@@ -35,7 +35,7 @@ public class MouseRotation : MonoBehaviour
             cameraRight.Normalize();
 
             // Calculate the world-space direction based on camera orientation
-            Vector3 direction = (cameraForward * inputsController.verticalInput + cameraRight * inputsController.horizontalInput).normalized;
+            Vector3 direction = (cameraForward * inputsController.keyboardVerticalInput + cameraRight * inputsController.keyboardHorizontalInput).normalized;
 
             // Calculate the target rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
