@@ -42,9 +42,12 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        targetDistance = distance;
+        if (inputsController.playing)
+        {
+            targetDistance = distance;
 
-        GetAnglesValues();
+            GetAnglesValues();
+        }
     }
 
     #endregion
@@ -55,7 +58,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (target)
+        if (inputsController.playing && target)
         {
             SetCameraValues();
         }

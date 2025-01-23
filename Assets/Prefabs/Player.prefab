@@ -973,7 +973,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7725494187950016757}
-  - component: {fileID: 8480783729364959221}
   - component: {fileID: 6971074510755411611}
   - component: {fileID: 4021692434014531758}
   - component: {fileID: 7834601723162268707}
@@ -1002,21 +1001,6 @@ Transform:
   - {fileID: 2749087413860743724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8480783729364959221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3171967282482615896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da87526ccb9e56e439250d2a8e3cd3ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalInput: 0
-  verticalInput: 0
-  scrollInput: 0
 --- !u!114 &6971074510755411611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,7 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d453a830c974ed44a68281296ec1a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputsController: {fileID: 8480783729364959221}
+  inputsController: {fileID: 0}
   ballController: {fileID: 4021692434014531758}
   target: {fileID: 2190278634329144884}
   distance: 5
@@ -1051,7 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc46e7073c4e3b4e9bffe03808b533f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputsController: {fileID: 8480783729364959221}
+  inputsController: {fileID: 0}
   rb: {fileID: 7840284743934646640}
   defaultSpeed: 10
   currentSpeed: 0
@@ -1068,7 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e13365a6843b04b9f4f9627c4ccd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputsController: {fileID: 8480783729364959221}
+  inputsController: {fileID: 0}
   rotationSpeed: 10
   cameraTransform: {fileID: 4971834493702268395}
   mouseTransform: {fileID: 2749087413860743724}

@@ -17,6 +17,14 @@ public class MouseRotation : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (inputsController.playing)
+        {
+            AnimateMouse();
+        }
+    }
+
+    private void AnimateMouse()
+    {
         // Combine the input into a direction vector
         Vector3 inputDirection = new(inputsController.keyboardHorizontalInput, 0, inputsController.keyboardVerticalInput);
 
@@ -57,6 +65,5 @@ public class MouseRotation : MonoBehaviour
             // Adjust the animation speed based on the velocity
             animator.speed = Mathf.Clamp(velocity * speedMultiplier, 0.0f, 2f);
         }
-
     }
 }

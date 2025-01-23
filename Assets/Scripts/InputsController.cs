@@ -8,6 +8,13 @@ public class InputsController : MonoBehaviour
     [HideInInspector] public float mouseVerticalInput;
     [HideInInspector] public float scrollInput;
 
+    public bool playing;
+
+    private void Start()
+    {
+        playing = false;
+    }
+
     void Update()
     {
         keyboardHorizontalInput = Input.GetAxis("Horizontal");

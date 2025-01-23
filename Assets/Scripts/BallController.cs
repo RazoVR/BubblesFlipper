@@ -24,13 +24,16 @@ public class BallController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Move the ball
+        if (inputsController.playing)
+        {
+            // Move the ball
 
-        MoveBall(inputsController.keyboardHorizontalInput, inputsController.keyboardVerticalInput);
+            MoveBall(inputsController.keyboardHorizontalInput, inputsController.keyboardVerticalInput);
 
-        // Set the tilt
+            // Set the tilt
 
-        SetBallDIrection();
+            SetBallDIrection();
+        }
     }
 
     #endregion
