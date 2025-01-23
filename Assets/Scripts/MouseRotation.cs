@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class MouseRotation : MonoBehaviour
 {
+    public InputsController inputsController;
+
     // Rotate
     public float rotationSpeed = 5f; 
     private float moveSpeed = 5f;
     public Transform cameraTransform;
+    public Transform mouseTransform;
 
     // Animator
     public Animator animator;  
@@ -14,15 +17,8 @@ public class MouseRotation : MonoBehaviour
 
     void FixedUpdate()
     {
-        // WTF codegpt a vraiment cook
-
-        // Rotation
-
-        float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        float vertical = Input.GetAxis("Vertical");     // W/S or Up/Down
-
         // Combine the input into a direction vector
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical);
+        Vector3 inputDirection = new(inputsController.horizontalInput, 0, inputsController.verticalInput);
 
         if (inputDirection.sqrMagnitude > 0.01f) // Avoid rotating when there's no input
         {
@@ -39,16 +35,16 @@ public class MouseRotation : MonoBehaviour
             cameraRight.Normalize();
 
             // Calculate the world-space direction based on camera orientation
-            Vector3 direction = (cameraForward * vertical + cameraRight * horizontal).normalized;
+            Vector3 direction = (cameraForward * inputsController.verticalInput + cameraRight * inputsController.horizontalInput).normalized;
 
             // Calculate the target rotation
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
             // Smoothly rotate towards the target rotation
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            mouseTransform.rotation = Quaternion.Slerp(mouseTransform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
             // Move the object in the direction
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            mouseTransform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
 
 

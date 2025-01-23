@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XInput;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CameraController : MonoBehaviour
 
     // References
 
+    public InputsController inputsController;
     public BallController ballController;
     public Transform target;
 
@@ -74,7 +76,7 @@ public class CameraController : MonoBehaviour
 
     private void GetAnglesValues()
     {
-        Vector3 angles = transform.eulerAngles;
+        Vector3 angles = Camera.main.transform.eulerAngles;
         x = angles.y;
         y = angles.x;
     }
@@ -110,8 +112,8 @@ public class CameraController : MonoBehaviour
     {
         // Prepare the camera x and y rotation angles
 
-        x += Input.GetAxis("Mouse X") * xSpeed * Time.deltaTime;
-        y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
+        x += inputsController.horizontalInput * xSpeed * Time.deltaTime;
+        y -= inputsController.verticalInput * ySpeed * Time.deltaTime;
 
         // Clamp the camera y angle
 
@@ -119,7 +121,7 @@ public class CameraController : MonoBehaviour
 
         // Change the target distance based on the scroll wheel input value
 
-        targetDistance = Mathf.Clamp(targetDistance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+        targetDistance = Mathf.Clamp(targetDistance - inputsController.scrollInput * 5, distanceMin, distanceMax);
 
         // Set the camera rotation
 
@@ -149,7 +151,7 @@ public class CameraController : MonoBehaviour
         Vector3 negDistance = new(0.0f, 0.0f, -distance);
         Vector3 position = rotation * negDistance + target.position;
 
-        transform.SetPositionAndRotation(position, rotation);
+        Camera.main.transform.SetPositionAndRotation(position, rotation);
     }
 
 

@@ -973,6 +973,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7725494187950016757}
+  - component: {fileID: 8480783729364959221}
+  - component: {fileID: 6971074510755411611}
+  - component: {fileID: 4021692434014531758}
+  - component: {fileID: 7834601723162268707}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -998,6 +1002,79 @@ Transform:
   - {fileID: 2749087413860743724}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8480783729364959221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171967282482615896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da87526ccb9e56e439250d2a8e3cd3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalInput: 0
+  verticalInput: 0
+  scrollInput: 0
+--- !u!114 &6971074510755411611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171967282482615896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d453a830c974ed44a68281296ec1a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputsController: {fileID: 8480783729364959221}
+  ballController: {fileID: 4021692434014531758}
+  target: {fileID: 2190278634329144884}
+  distance: 5
+  xSpeed: 120
+  ySpeed: 120
+  yMinLimit: -20
+  yMaxLimit: 80
+  distanceMin: 0.8
+  distanceMax: 10
+--- !u!114 &4021692434014531758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171967282482615896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc46e7073c4e3b4e9bffe03808b533f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputsController: {fileID: 8480783729364959221}
+  rb: {fileID: 7840284743934646640}
+  defaultSpeed: 10
+  currentSpeed: 0
+  ballDirection: 0
+--- !u!114 &7834601723162268707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171967282482615896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e13365a6843b04b9f4f9627c4ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputsController: {fileID: 8480783729364959221}
+  rotationSpeed: 10
+  cameraTransform: {fileID: 4971834493702268395}
+  mouseTransform: {fileID: 2749087413860743724}
+  animator: {fileID: 8324651949212264193}
+  targetRigidbody: {fileID: 7840284743934646640}
+  speedMultiplier: 0.1
 --- !u!1 &3247053060487781452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1372,6 @@ GameObject:
   - component: {fileID: 2749087413860743724}
   - component: {fileID: 8324651949212264193}
   - component: {fileID: 1511426858398255569}
-  - component: {fileID: 993873294820191145}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -1362,23 +1438,6 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 2190278634329144884}
     weight: 1
---- !u!114 &993873294820191145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5068310963435194153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e13365a6843b04b9f4f9627c4ccd08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  cameraTransform: {fileID: 4971834493702268395}
-  animator: {fileID: 8324651949212264193}
-  targetRigidbody: {fileID: 7840284743934646640}
-  speedMultiplier: 0.1
 --- !u!1 &5134515721796566152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,7 +1577,6 @@ GameObject:
   - component: {fileID: 1264444816669775474}
   - component: {fileID: 4567205480399295509}
   - component: {fileID: 4843680159638697826}
-  - component: {fileID: 632502685721476774}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1644,27 +1702,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &632502685721476774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6314375917364923531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d453a830c974ed44a68281296ec1a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballController: {fileID: 4848697855596328633}
-  target: {fileID: 2190278634329144884}
-  distance: 5
-  xSpeed: 120
-  ySpeed: 120
-  yMinLimit: -20
-  yMaxLimit: 80
-  distanceMin: 0.8
-  distanceMax: 10
 --- !u!1 &6521009893440248549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +2001,6 @@ GameObject:
   - component: {fileID: 7515877162417463318}
   - component: {fileID: 7988881180862083122}
   - component: {fileID: 7840284743934646640}
-  - component: {fileID: 4848697855596328633}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -2088,21 +2124,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4848697855596328633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032624960069227389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc46e7073c4e3b4e9bffe03808b533f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultSpeed: 10
-  currentSpeed: 0
-  ballDirection: 0
 --- !u!1 &8258974140023320432
 GameObject:
   m_ObjectHideFlags: 0

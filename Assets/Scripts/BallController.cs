@@ -6,28 +6,17 @@ public class BallController : MonoBehaviour
 
     #region|Variables|
 
+    public InputsController inputsController;
+    public Rigidbody rb;
     public float defaultSpeed = 10f;
     public float currentSpeed = 0f;
     public float ballDirection;
-
-    private Rigidbody rb;
 
     #endregion
 
     // Start and FixedUpdate
 
     #region|Monobehaviour|
-
-    // Gets the RigidBody
-
-    #region|Start|
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    #endregion
 
     // Moves the ball according to the given inputs, and sets the ballDirection value
 
@@ -37,7 +26,7 @@ public class BallController : MonoBehaviour
     {
         // Move the ball
 
-        MoveBall(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        MoveBall(inputsController.horizontalInput, inputsController.verticalInput);
 
         // Set the tilt
 
