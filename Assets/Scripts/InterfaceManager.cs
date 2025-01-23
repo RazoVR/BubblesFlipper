@@ -9,8 +9,10 @@ public class InterfaceManager : MonoBehaviour
     public MouseRotation mouseRotation;
 
     public Image cameraImage;
+    public Button backButton;
     public TMP_Text chronoText;
 
+    public Sprite helpImage;
     public Sprite number3;
     public Sprite number2;
     public Sprite number1;
@@ -60,6 +62,32 @@ public class InterfaceManager : MonoBehaviour
     public void StartButtonClick()
     {
         StartCoroutine(PlayGameCoroutine());
+    }
+
+    public void HelpButtonClick()
+    {
+        cameraImage.sprite = helpImage;
+        cameraImage.color = Color.white;
+        backButton.gameObject.SetActive(true);
+    }
+
+    public void ExitButtonClick()
+    {
+        #if UNITY_EDITOR
+
+        UnityEditor.EditorApplication.isPlaying = false;
+
+        #else
+
+        Application.Quit();
+
+        #endif
+    }
+
+    public void BackButtonClick()
+    {
+        cameraImage.color = Color.clear;
+        backButton.gameObject.SetActive(false);
     }
 
     private IEnumerator PlayGameCoroutine()
