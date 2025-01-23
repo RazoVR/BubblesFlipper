@@ -159,5 +159,17 @@ public class CameraController : MonoBehaviour
 
     #endregion
 
+    // Reset the rotation of the camera
+
+    #region|ResetCameraValues|
+
+    public void ResetCameraValues()
+    {
+        x = 0f;
+        y = 0f;
+    }
+
+    #endregion
+
     #endregion
 }

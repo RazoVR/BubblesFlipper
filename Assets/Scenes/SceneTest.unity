@@ -119,6 +119,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &105687701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2190278634329144884, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+  m_PrefabInstance: {fileID: 1661110035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &105687702 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7840284743934646640, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+  m_PrefabInstance: {fileID: 1661110035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &221773779 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5724872751645279078, guid: 837f4a99bc2e9ca4098a523d6ff53449, type: 3}
@@ -534,6 +544,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e13365a6843b04b9f4f9627c4ccd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &593282634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6971074510755411611, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+  m_PrefabInstance: {fileID: 1661110035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d453a830c974ed44a68281296ec1a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &832575517
@@ -1894,6 +1915,10 @@ PrefabInstance:
       propertyPath: inputsController
       value: 
       objectReference: {fileID: 221773779}
+    - target: {fileID: 7840284743934646640, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7852138043087947759, guid: ad6c088a7245e5b458db82cba4610b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 21.296461
@@ -2017,7 +2042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1965085088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2066,8 +2091,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2506,7 +2531,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputsController: {fileID: 221773779}
+  cameraController: {fileID: 593282634}
   mouseRotation: {fileID: 593282632}
+  bubble: {fileID: 105687701}
+  rb: {fileID: 105687702}
   cameraImage: {fileID: 597021467167694960}
   backButton: {fileID: 886887792}
   chronoText: {fileID: 1965085089}
