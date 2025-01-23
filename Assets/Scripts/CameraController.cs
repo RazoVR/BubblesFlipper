@@ -24,8 +24,8 @@ public class CameraController : MonoBehaviour
 
     // Private floats
 
-    private float x = 0.0f;
-    private float y = 0.0f;
+    private float x = 180f;
+    private float y = 0f;
     private float targetDistance = 5f;
 
     #endregion
@@ -165,7 +165,7 @@ public class CameraController : MonoBehaviour
 
     public void ResetCameraValues()
     {
-        x = 0f;
+        x = 180f;
         y = 0f;
     }
 

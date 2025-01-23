@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using TMPro.Examples;
+using Unity.Android.Gradle;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,7 +49,8 @@ public class InterfaceManager : MonoBehaviour
         Vector3 cameraPos = new(0f, 1f, 4f);
         Quaternion cameraRot = Quaternion.Euler(0f, 150, 0f);
 
-        Camera.main.transform.SetPositionAndRotation(cameraPos, cameraRot);
+        Camera.main.transform.localPosition = cameraPos;
+        Camera.main.transform.localRotation = cameraRot;
 
         yield return new WaitForSeconds(1f);
 
@@ -95,11 +97,13 @@ public class InterfaceManager : MonoBehaviour
 
     private IEnumerator PlayGameCoroutine()
     {
-        Camera.main.transform.GetPositionAndRotation(out Vector3 startPosition, out Quaternion startRotation);
-        float startSpeed = mouseRotation.animator.speed;
+        Vector3 startPosition = Camera.main.transform.localPosition;
+        Quaternion startRotation = Camera.main.transform.localRotation;
 
-        Vector3 targetPosition = new(0f, 0.75f, -5f);
+        Vector3 targetPosition = new(0f, 0.3f, -5f);
         Quaternion targetRotation = Quaternion.identity;
+
+        float startSpeed = mouseRotation.animator.speed;
 
         StartCoroutine(StartCountdown());
 
@@ -118,7 +122,9 @@ public class InterfaceManager : MonoBehaviour
             t = 1f - Mathf.Pow(2f, -10f * t);
 
             mouseRotation.animator.speed = Mathf.Lerp(startSpeed, 0f, t);
-            Camera.main.transform.SetPositionAndRotation(Vector3.Lerp(startPosition, targetPosition, t), Quaternion.Slerp(startRotation, targetRotation, t));
+
+            Camera.main.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
+            Camera.main.transform.localRotation = Quaternion.Slerp(startRotation, targetRotation, t);
 
             yield return null;
         }
@@ -126,7 +132,9 @@ public class InterfaceManager : MonoBehaviour
         // Validate
 
         mouseRotation.animator.speed = 0f;
-        Camera.main.transform.SetPositionAndRotation(targetPosition, targetRotation);
+
+        Camera.main.transform.localPosition = targetPosition;
+        Camera.main.transform.localRotation = targetRotation;
     }
 
     private IEnumerator FadeImage(float desiredAlpha, float fadeDuration)
@@ -190,11 +198,13 @@ public class InterfaceManager : MonoBehaviour
 
         // Reset player default values
 
-        bubble.transform.SetPositionAndRotation(new(0, 0.75f, 0), Quaternion.identity);
-        Camera.main.transform.SetPositionAndRotation(new(0f, 0.75f, -5f), Quaternion.identity);
+        bubble.transform.localPosition = new(0, 0.3f, 0);
+        bubble.transform.localRotation = new(0, 0, 0, 1);
+        Camera.main.transform.localPosition = new(0f, 0.3f, -5f);
+        Camera.main.transform.localRotation = new(0, 0, 0, 1);
         cameraController.ResetCameraValues();
         mouseRotation.animator.speed = 0f;
-        mouseRotation.mouseTransform.rotation = Quaternion.identity;
+        mouseRotation.mouseTransform.localRotation = new(0, 0, 0, 1);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
