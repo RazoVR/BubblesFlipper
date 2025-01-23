@@ -14,10 +14,15 @@ public class InterfaceManager : MonoBehaviour
 
     private IEnumerator Introduction()
     {
-        Color color = blackImage.color;
-        color.a = 1f;
+        Vector3 cameraPos = new(0f, 1f, 4f);
+        Quaternion cameraRot = Quaternion.Euler(0f, 150, 0f);
+
+        Camera.main.transform.SetPositionAndRotation(cameraPos, cameraRot);
 
         yield return new WaitForSeconds(1f);
+
+        Color color = blackImage.color;
+        color.a = 1f;
 
         float fadeDuration = 2f;
         float elapsedTime = 0f;
