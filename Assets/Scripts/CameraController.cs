@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        if (inputsController.playing)
+        if (inputsController.isPlaying)
         {
             targetDistance = distance;
 
@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (inputsController.playing && target)
+        if (inputsController.isPlaying && target)
         {
             SetCameraValues();
         }

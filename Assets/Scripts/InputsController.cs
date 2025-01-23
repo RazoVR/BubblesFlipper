@@ -8,11 +8,11 @@ public class InputsController : MonoBehaviour
     [HideInInspector] public float mouseVerticalInput;
     [HideInInspector] public float scrollInput;
 
-    public bool playing;
+    public bool isPlaying;
 
     private void Start()
     {
-        playing = false;
+        isPlaying = false;
     }
 
     void Update()

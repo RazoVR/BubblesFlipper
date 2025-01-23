@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,17 @@ public class InterfaceManager : MonoBehaviour
 {
     public InputsController inputsController;
     public MouseRotation mouseRotation;
+
     public Image cameraImage;
+    public TMP_Text chronoText;
 
     public Sprite number3;
     public Sprite number2;
     public Sprite number1;
     public Sprite goText;
+
+    private bool isRunning = false;
+    private float chronoElapsedTime = 0f;
 
     private void Start()
     {
@@ -104,7 +110,10 @@ public class InterfaceManager : MonoBehaviour
         mouseRotation.animator.speed = 0f;
         Camera.main.transform.SetPositionAndRotation(targetPosition, targetRotation);
 
-        inputsController.playing = true;
+        inputsController.isPlaying = true;
+        chronoText.gameObject.SetActive(true);
+
+        StartChrono();
 
         // And fade out the cameraImage
 
@@ -127,5 +136,38 @@ public class InterfaceManager : MonoBehaviour
 
         color.a = 0f;
         cameraImage.color = color;
+    }
+
+    public void StartChrono()
+    {
+        isRunning = true;
+        StartCoroutine(UpdateChrono());
+    }
+
+    public void StopChrono()
+    {
+        isRunning = false;
+    }
+
+    public void ResetChrono()
+    {
+        chronoElapsedTime = 0f;
+        chronoText.text = "00:00:000";
+    }
+
+    private IEnumerator UpdateChrono()
+    {
+        while (isRunning)
+        {
+            chronoElapsedTime += Time.deltaTime;
+
+            int minutes = Mathf.FloorToInt(chronoElapsedTime / 60f);
+            int seconds = Mathf.FloorToInt(chronoElapsedTime % 60f);
+            int milliseconds = Mathf.FloorToInt((chronoElapsedTime * 1000f) % 1000f);
+
+            chronoText.text = $"{minutes:00}:{seconds:00}:{milliseconds:000}";
+
+            yield return null;
+        }
     }
 }

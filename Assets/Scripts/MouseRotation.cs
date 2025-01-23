@@ -17,7 +17,7 @@ public class MouseRotation : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (inputsController.playing)
+        if (inputsController.isPlaying)
         {
             AnimateMouse();
         }
