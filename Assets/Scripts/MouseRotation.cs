@@ -59,7 +59,7 @@ public class MouseRotation : MonoBehaviour
             float velocity = targetRigidbody.linearVelocity.magnitude;
 
             // Adjust the animation speed based on the velocity
-            animator.speed = Mathf.Clamp(velocity * speedMultiplier, 0.0f, 6f);
+            animator.speed = Mathf.Clamp(velocity * speedMultiplier, 0.0f, 2f);
         }
 
     }
