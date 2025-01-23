@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
 
     private float x = 0.0f;
     private float y = 0.0f;
+    private float targetDistance = 5f;
 
     #endregion
 
@@ -40,6 +41,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        targetDistance = distance;
+
         GetAnglesValues();
     }
 
@@ -105,24 +108,50 @@ public class CameraController : MonoBehaviour
 
     private void SetCameraValues()
     {
+        // Prepare the camera x and y rotation angles
+
         x += Input.GetAxis("Mouse X") * xSpeed * Time.deltaTime;
         y -= Input.GetAxis("Mouse Y") * ySpeed * Time.deltaTime;
 
+        // Clamp the camera y angle
+
         y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-        Quaternion rotation = Quaternion.Euler(y, x, ballController.ballDirection * ballController.currentSpeed / 5);
-        distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+        // Change the target distance based on the scroll wheel input value
 
-        if (Physics.Linecast(target.position, transform.position, out RaycastHit hit))
+        targetDistance = Mathf.Clamp(targetDistance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+
+        // Set the camera rotation
+
+        Quaternion rotation = Quaternion.Euler(y, x, ballController.ballDirection * ballController.currentSpeed / 5);
+
+        // Set the desired position (ignoring obstacles and walls)
+
+        Vector3 desiredPosition = target.position - (rotation * Vector3.forward * targetDistance);
+
+        // Check if there are walls or obstacles behind the camera and adjust the distance if so
+
+        if (Physics.Linecast(target.position, desiredPosition, out RaycastHit hit))
         {
-            distance -= hit.distance;
+            float adjustedDistance = hit.distance - 2f;
+            distance = Mathf.Clamp(adjustedDistance, distanceMin, targetDistance);
         }
+
+        // If no obstacle is detected, set the correct distance slowly
+
+        else
+        {
+            distance = Mathf.Lerp(distance, targetDistance, Time.deltaTime * 5);
+        }
+
+        // Calculate and set the final position and rotation of the camera
 
         Vector3 negDistance = new(0.0f, 0.0f, -distance);
         Vector3 position = rotation * negDistance + target.position;
 
         transform.SetPositionAndRotation(position, rotation);
     }
+
 
     #endregion
 
