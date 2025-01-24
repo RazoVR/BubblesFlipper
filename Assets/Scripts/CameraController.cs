@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public InputsController inputsController;
     public BallController ballController;
     public Transform target;
+    public GameObject retopo;
+    public GameObject deform;
 
     // Public floats
 
@@ -152,6 +154,18 @@ public class CameraController : MonoBehaviour
 
         Vector3 negDistance = new(0.0f, 0.0f, -distance);
         Vector3 position = rotation * negDistance + target.position;
+
+        if (distance < 1f)
+        {
+            retopo.SetActive(false);
+            deform.SetActive(false);
+        }
+
+        else if (!retopo.activeSelf)
+        {
+            retopo.SetActive(true);
+            deform.SetActive(true);
+        }
 
         Camera.main.transform.SetPositionAndRotation(position, rotation);
     }

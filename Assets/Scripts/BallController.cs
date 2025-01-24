@@ -87,7 +87,7 @@ public class BallController : MonoBehaviour
 
     private void ScaleCameraFov()
     {
-        float targetFov = Mathf.Lerp(50f, 90f, currentSpeed / defaultSpeed);
+        float targetFov = Mathf.Lerp(60f, 90f, currentSpeed / defaultSpeed);
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFov, Time.deltaTime * 5f);
     }
 

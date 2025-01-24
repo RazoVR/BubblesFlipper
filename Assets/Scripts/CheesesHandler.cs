@@ -41,6 +41,7 @@ public class CheesesHandler : MonoBehaviour
         foreach (Transform cheeseTransform in cheesesTransforms)
         {
             cheeseTransform.gameObject.SetActive(true);
+            StartCoroutine(AnimateCheese(cheeseTransform));
         }
     }
 }
