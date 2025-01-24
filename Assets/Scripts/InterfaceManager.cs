@@ -48,6 +48,7 @@ public class InterfaceManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 120;
         StartCoroutine(Introduction());
     }
 
