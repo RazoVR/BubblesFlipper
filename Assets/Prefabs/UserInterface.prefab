@@ -49,12 +49,21 @@ MonoBehaviour:
   inputsController: {fileID: 0}
   cameraController: {fileID: 0}
   mouseRotation: {fileID: 0}
+  cheesesHandler: {fileID: 0}
   bubble: {fileID: 0}
   rb: {fileID: 0}
+  musicPlayer: {fileID: 0}
+  soundEffectPlayer: {fileID: 0}
   cameraImage: {fileID: 1174891420040982844}
   backButton: {fileID: 1057469572637773643}
+  startButton: {fileID: 9001427636902144885}
+  helpButton: {fileID: 8026531122835178253}
+  exitButton: {fileID: 3264399985576556817}
   chronoText: {fileID: 4485362613905431942}
   counterText: {fileID: 7195591581403270075}
+  startText: {fileID: 6024204289094748318}
+  helpText: {fileID: 1970430795502130059}
+  exitText: {fileID: 7537422536122775794}
   helpImage: {fileID: 21300000, guid: 0c905b073d2df2b4e84370a0dc43be59, type: 3}
   number3: {fileID: 21300000, guid: a533084f61ebf4546b06c26e13278b2b, type: 3}
   number2: {fileID: 21300000, guid: 3bdf6fb508b540447b71cf36c3374274, type: 3}
