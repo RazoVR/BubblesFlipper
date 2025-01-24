@@ -8,6 +8,7 @@ public class BallController : MonoBehaviour
 
     public InputsController inputsController;
     public Rigidbody rb;
+    public ParticleSystem particles;
     public float defaultSpeed = 10f;
     public float currentSpeed = 0f;
     public float ballDirection;
@@ -67,6 +68,18 @@ public class BallController : MonoBehaviour
 
         rb.AddForce(movement * defaultSpeed);
         currentSpeed = rb.linearVelocity.magnitude;
+
+        if (currentSpeed < 5f && particles.isPlaying)
+        {
+            particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+
+        else if (!particles.isPlaying)
+        {
+            ParticleSystem.EmissionModule emissionModule = particles.emission;
+            emissionModule.enabled = true;
+            particles.Play(true);
+        }
     }
 
     #endregion

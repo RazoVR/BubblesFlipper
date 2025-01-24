@@ -40,8 +40,11 @@ public class CheesesHandler : MonoBehaviour
     {
         foreach (Transform cheeseTransform in cheesesTransforms)
         {
-            cheeseTransform.gameObject.SetActive(true);
-            StartCoroutine(AnimateCheese(cheeseTransform));
+            if (!cheeseTransform.gameObject.activeSelf)
+            {
+                cheeseTransform.gameObject.SetActive(true);
+                StartCoroutine(AnimateCheese(cheeseTransform));
+            }
         }
     }
 }
