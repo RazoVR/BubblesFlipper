@@ -35,4 +35,12 @@ public class CheesesHandler : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ResetCheeses()
+    {
+        foreach (Transform cheeseTransform in cheesesTransforms)
+        {
+            cheeseTransform.gameObject.SetActive(true);
+        }
+    }
 }

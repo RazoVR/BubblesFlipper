@@ -8,6 +8,7 @@ public class CheeseTrigger : MonoBehaviour
     {
         interfaceManager.cheesesCount++;
         interfaceManager.incrementCheeses = true;
+        interfaceManager.soundEffectPlayer.Play();
 
         gameObject.SetActive(false);
     }

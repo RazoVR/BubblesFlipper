@@ -9,16 +9,27 @@ public class InterfaceManager : MonoBehaviour
     public InputsController inputsController;
     public CameraController cameraController;
     public MouseRotation mouseRotation;
+    public CheesesHandler cheesesHandler;
 
     [Header("Player References")]
     public Transform bubble;
     public Rigidbody rb;
 
+    [Header("Audio Sources")]
+    public AudioSource musicPlayer;
+    public AudioSource soundEffectPlayer;
+
     [Header("User Interface Variables")]
     public Image cameraImage;
     public Button backButton;
+    public Button startButton;
+    public Button helpButton;
+    public Button exitButton;
     public TMP_Text chronoText;
     public TMP_Text counterText;
+    public TMP_Text startText;
+    public TMP_Text helpText;
+    public TMP_Text exitText;
 
     [Header("Sprites References")]
     public Sprite helpImage;
@@ -63,7 +74,7 @@ public class InterfaceManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        StartCoroutine(FadeImage(0f, 1f));
+        StartCoroutine(FadeImage(cameraImage, null, null, 0f, 1f));
 
         yield return new WaitForSeconds(1f);
 
@@ -123,6 +134,13 @@ public class InterfaceManager : MonoBehaviour
 
         while (elapsedTime < duration)
         {
+            if (elapsedTime > 1f && startButton.image.color.a == 1f)
+            {
+                StartCoroutine(FadeImage(null, startButton, startText, 0f, 1f));
+                StartCoroutine(FadeImage(null, helpButton, helpText, 0f, 1f));
+                StartCoroutine(FadeImage(null, exitButton, exitText, 0f, 1f));
+            }
+
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
 
@@ -146,9 +164,25 @@ public class InterfaceManager : MonoBehaviour
         Camera.main.transform.localRotation = targetRotation;
     }
 
-    private IEnumerator FadeImage(float desiredAlpha, float fadeDuration)
+    private IEnumerator FadeImage(Image targetImage, Button targetButton, TMP_Text targetText, float desiredAlpha, float fadeDuration)
     {
-        Color color = cameraImage.color;
+        Color color = default;
+
+        if (targetImage != null)
+        {
+            color = targetImage.color;
+        }
+
+        if (targetButton != null)
+        {
+            color = targetButton.image.color;
+        }
+
+        if (targetText != null)
+        {
+            color = targetText.color;
+        }
+
         float originalAlpha = color.a;
         float elapsedTime = 0f;
 
@@ -158,13 +192,40 @@ public class InterfaceManager : MonoBehaviour
             float alpha = Mathf.Lerp(originalAlpha, desiredAlpha, elapsedTime / fadeDuration);
             color.a = alpha;
 
-            cameraImage.color = color;
+            if (targetImage != null)
+            {
+                targetImage.color = color;
+            }
+
+            if (targetButton != null)
+            {
+                targetButton.image.color = color;
+            }
+
+            if (targetText != null)
+            {
+                targetText.color = color;
+            }
 
             yield return null;
         }
 
         color.a = 0f;
-        cameraImage.color = color;
+
+        if (targetImage != null)
+        {
+            targetImage.color = color;
+        }
+
+        if (targetButton != null)
+        {
+            targetButton.image.color = color;
+        }
+
+        if (targetText != null)
+        {
+            targetText.color = color;
+        }
     }
 
     public void StartChrono()
@@ -218,6 +279,13 @@ public class InterfaceManager : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        // Reset map
+
+        musicPlayer.Stop();
+        cheesesHandler.ResetCheeses();
+        cheesesCount = 0;
+        counterText.text = $"{cheesesCount}/20 Cheeses";
+
         // Reset UI
 
         chronoText.color = Color.clear;
@@ -257,8 +325,9 @@ public class InterfaceManager : MonoBehaviour
 
         cameraImage.sprite = goText;
         inputsController.isPlaying = true;
+        musicPlayer.Play();
 
-        StartCoroutine(FadeImage(0f, 1f));
+        StartCoroutine(FadeImage(cameraImage, null, null, 0f, 1f));
         StartChrono();
     }
 
