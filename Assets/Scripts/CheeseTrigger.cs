@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class CheeseTrigger : MonoBehaviour
 {
+    public InterfaceManager interfaceManager;
+
     private void OnTriggerEnter()
     {
-         gameObject.SetActive(false);
+        interfaceManager.cheesesCount++;
+        interfaceManager.incrementCheeses = true;
+
+        gameObject.SetActive(false);
     }
 }

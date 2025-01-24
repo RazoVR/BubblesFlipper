@@ -18,6 +18,7 @@ public class InterfaceManager : MonoBehaviour
     public Image cameraImage;
     public Button backButton;
     public TMP_Text chronoText;
+    public TMP_Text counterText;
 
     [Header("Sprites References")]
     public Sprite helpImage;
@@ -25,6 +26,12 @@ public class InterfaceManager : MonoBehaviour
     public Sprite number2;
     public Sprite number1;
     public Sprite goText;
+
+    [HideInInspector]
+    public int cheesesCount = 0;
+
+    [HideInInspector]
+    public bool incrementCheeses = false;
 
     private float chronoElapsedTime = 0f;
 
@@ -38,6 +45,11 @@ public class InterfaceManager : MonoBehaviour
         if (inputsController.isPlaying && inputsController.keyboardRestartKey)
         {
             RestartGame();
+        }
+
+        if (incrementCheeses)
+        {
+            UpdateCheesesCount();
         }
     }
 
@@ -158,6 +170,7 @@ public class InterfaceManager : MonoBehaviour
     public void StartChrono()
     {
         inputsController.chronoIsRunning = true;
+        counterText.color = Color.white;
         chronoText.color = Color.white;
         StartCoroutine(UpdateChrono());
     }
@@ -208,6 +221,7 @@ public class InterfaceManager : MonoBehaviour
         // Reset UI
 
         chronoText.color = Color.clear;
+        counterText.color = Color.clear;
         StopChrono();
         ResetChrono();
 
@@ -246,5 +260,10 @@ public class InterfaceManager : MonoBehaviour
 
         StartCoroutine(FadeImage(0f, 1f));
         StartChrono();
+    }
+
+    private void UpdateCheesesCount()
+    {
+        counterText.text = $"{cheesesCount}/20 Cheeses";
     }
 }
