@@ -33,6 +33,8 @@ public class BallController : MonoBehaviour
             // Set the tilt
 
             SetBallDIrection();
+
+            ScaleCameraFov();
         }
     }
 
@@ -82,6 +84,12 @@ public class BallController : MonoBehaviour
     }
 
     #endregion
+
+    private void ScaleCameraFov()
+    {
+        float targetFov = Mathf.Lerp(50f, 90f, currentSpeed / defaultSpeed);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFov, Time.deltaTime * 5f);
+    }
 
     #endregion
 }
