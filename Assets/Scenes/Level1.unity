@@ -4250,6 +4250,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2629907, y: 4.48884, z: 1.6016192}
   m_Center: {x: 0.051927805, y: 2.2433558, z: -0.020910263}
+--- !u!114 &1376049252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3988354049168109331, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+  m_PrefabInstance: {fileID: 1829162115}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1389595226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ce902a03c245f6748b983f56d9972af2, type: 3}
@@ -5439,6 +5450,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 994126292}
     - target: {fileID: 654596904991415580, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: speedometerText
+      value: 
+      objectReference: {fileID: 1376049252}
+    - target: {fileID: 654596904991415580, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1355315539}
@@ -5450,6 +5465,10 @@ PrefabInstance:
       propertyPath: soundEffectPlayer
       value: 
       objectReference: {fileID: 1662230437}
+    - target: {fileID: 2508137530196141030, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 814
+      objectReference: {fileID: 0}
     - target: {fileID: 2957415643451842500, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5497,6 +5516,14 @@ PrefabInstance:
     - target: {fileID: 3559923714818392766, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_RenderMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988354049168109331, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_margin.x
+      value: 720.3982
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988354049168109331, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6616750167295485155, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_Camera

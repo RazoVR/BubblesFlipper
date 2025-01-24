@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
     public Rigidbody rb;
     public ParticleSystem particles;
     public float defaultSpeed = 10f;
-    public float currentSpeed = 0f;
+    public static float currentSpeed = 0f;
     public float ballDirection;
 
     #endregion

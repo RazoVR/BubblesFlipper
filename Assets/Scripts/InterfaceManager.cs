@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class InterfaceManager : MonoBehaviour
     public Button exitButton;
     public TMP_Text chronoText;
     public TMP_Text counterText;
+    public TMP_Text speedometerText;
     public TMP_Text startText;
     public TMP_Text helpText;
     public TMP_Text exitText;
@@ -63,6 +65,12 @@ public class InterfaceManager : MonoBehaviour
         {
             UpdateCheesesCount();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        //  Le bon pedometer :3
+        speedometerText.text = $"{Math.Round(BallController.currentSpeed, 2)} u/h";
     }
 
     private IEnumerator Introduction()
@@ -238,6 +246,7 @@ public class InterfaceManager : MonoBehaviour
         inputsController.chronoIsRunning = true;
         counterText.color = Color.white;
         chronoText.color = Color.white;
+        speedometerText.color = Color.white;
         StartCoroutine(UpdateChrono());
     }
 
@@ -290,11 +299,11 @@ public class InterfaceManager : MonoBehaviour
         cheesesHandler.ResetCheeses();
         cheesesCount = 0;
         counterText.text = $"{cheesesCount}/20 Cheeses";
-
         // Reset UI
 
         chronoText.color = Color.clear;
         counterText.color = Color.clear;
+        speedometerText.color = Color.clear;
         StopChrono();
         ResetChrono();
 

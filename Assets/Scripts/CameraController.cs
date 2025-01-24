@@ -129,7 +129,7 @@ public class CameraController : MonoBehaviour
 
         // Set the camera rotation
 
-        Quaternion rotation = Quaternion.Euler(y, x, ballController.ballDirection * ballController.currentSpeed / 5);
+        Quaternion rotation = Quaternion.Euler(y, x, ballController.ballDirection * BallController.currentSpeed / 5);
 
         // Set the desired position (ignoring obstacles and walls)
 
