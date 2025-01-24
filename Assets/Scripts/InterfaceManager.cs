@@ -136,9 +136,13 @@ public class InterfaceManager : MonoBehaviour
         {
             if (elapsedTime > 1f && startButton.image.color.a == 1f)
             {
-                StartCoroutine(FadeImage(null, startButton, startText, 0f, 1f));
-                StartCoroutine(FadeImage(null, helpButton, helpText, 0f, 1f));
-                StartCoroutine(FadeImage(null, exitButton, exitText, 0f, 1f));
+                StartCoroutine(FadeImage(null, startButton, null, 0f, 1f));
+                StartCoroutine(FadeImage(null, helpButton, null, 0f, 1f));
+                StartCoroutine(FadeImage(null, exitButton, null, 0f, 1f));
+
+                StartCoroutine(FadeImage(null, null, startText, 0f, 1f));
+                StartCoroutine(FadeImage(null, null, helpText, 0f, 1f));
+                StartCoroutine(FadeImage(null, null, exitText, 0f, 1f));
             }
 
             elapsedTime += Time.deltaTime;
@@ -271,7 +275,7 @@ public class InterfaceManager : MonoBehaviour
 
         bubble.transform.localPosition = new(0, 0.3f, 0);
         bubble.transform.localRotation = new(0, 0, 0, 1);
-        Camera.main.transform.localPosition = new(0f, 0.3f, -5f);
+        Camera.main.transform.localPosition = new(0f, 0.3f, -cameraController.distance);
         Camera.main.transform.localRotation = new(0, 0, 0, 1);
         cameraController.ResetCameraValues();
         mouseRotation.animator.speed = 0f;

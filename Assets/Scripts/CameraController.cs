@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     private float x = 180f;
     private float y = 0f;
-    private float targetDistance = 5f;
+    public float targetDistance = 5f;
 
     #endregion
 
