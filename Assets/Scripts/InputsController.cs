@@ -15,12 +15,7 @@ public class InputsController : MonoBehaviour
 
 
     public bool chronoIsRunning;
-    public bool isPlaying;
-
-    private void Start()
-    {
-        isPlaying = false;
-    }
+    public static bool isPlaying;
 
     void Update()
     {

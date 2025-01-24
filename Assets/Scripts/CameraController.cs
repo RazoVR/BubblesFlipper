@@ -16,9 +16,8 @@ public class CameraController : MonoBehaviour
 
     // Public floats
 
+    public int speed = 120;
     public float distance = 5.0f;
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
     public float yMinLimit = -20f;
     public float yMaxLimit = 80f;
     public float distanceMin = 3f;
@@ -44,7 +43,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        if (inputsController.isPlaying)
+        if (InputsController.isPlaying)
         {
             targetDistance = distance;
 
@@ -60,7 +59,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (inputsController.isPlaying && target)
+        if (InputsController.isPlaying && target)
         {
             SetCameraValues();
         }
@@ -116,8 +115,8 @@ public class CameraController : MonoBehaviour
     {
         // Prepare the camera x and y rotation angles
 
-        x += inputsController.mouseHorizontalInput * xSpeed * Time.deltaTime;
-        y -= inputsController.mouseVerticalInput * ySpeed * Time.deltaTime;
+        x += inputsController.mouseHorizontalInput * speed * Time.deltaTime;
+        y -= inputsController.mouseVerticalInput * speed * Time.deltaTime;
 
         // Clamp the camera y angle
 

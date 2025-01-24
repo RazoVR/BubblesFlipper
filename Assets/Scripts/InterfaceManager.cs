@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
@@ -22,10 +23,12 @@ public class InterfaceManager : MonoBehaviour
 
     [Header("User Interface Variables")]
     public Image cameraImage;
+    public Slider sensitivitySlider;
     public Button backButton;
     public Button startButton;
     public Button helpButton;
     public Button exitButton;
+    public TMP_Text sensitivityText;
     public TMP_Text chronoText;
     public TMP_Text counterText;
     public TMP_Text speedometerText;
@@ -51,14 +54,56 @@ public class InterfaceManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 120;
-        StartCoroutine(Introduction());
+
+        if (!InputsController.isPlaying)
+        {
+            StartCoroutine(Introduction());
+        }
+
+        else
+        {
+            InputsController.isPlaying = false;
+            cameraImage.color = Color.clear;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Camera.main.transform.localPosition = new(0f, 0.3f, -cameraController.distance);
+            Camera.main.transform.localRotation = new(0, 0, 0, 1);
+            cameraController.ResetCameraValues();
+
+            mouseRotation.animator.speed = 0f;
+            mouseRotation.mouseTransform.localRotation = new(0, 0, 0, 1);
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            startButton.image.color = Color.clear;
+            helpButton.image.color = Color.clear;
+            exitButton.image.color = Color.clear;
+
+            startText.color = Color.clear;
+            helpText.color = Color.clear;
+            exitText.color = Color.clear;
+
+            StartCoroutine(StartCountdown());
+        }
     }
 
     private void Update()
     {
-        if (inputsController.isPlaying && inputsController.keyboardRestartKey)
+        if (InputsController.isPlaying && inputsController.keyboardRestartKey)
         {
-            RestartGame();
+            Restart();
+        }
+
+        if (InputsController.isPlaying && inputsController.keyboardEscapeKey)
+        {
+            InputsController.isPlaying = false;
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            Restart();
         }
 
         if (incrementCheeses)
@@ -70,11 +115,14 @@ public class InterfaceManager : MonoBehaviour
     private void FixedUpdate()
     {
         //  Le bon pedometer :3
-        speedometerText.text = $"{Math.Round(BallController.currentSpeed, 2)} u/h";
+        speedometerText.text = $"{Math.Round(BallController.currentSpeed, 2)} cm per second";
     }
 
     private IEnumerator Introduction()
     {
+        sensitivitySlider.value = cameraController.speed;
+        sensitivityText.text = $"Mouse sensitivity: {cameraController.speed}";
+
         Vector3 cameraPos = new(0f, 1f, 4f);
         Quaternion cameraRot = Quaternion.Euler(0f, 150, 0f);
 
@@ -102,7 +150,7 @@ public class InterfaceManager : MonoBehaviour
     {
         cameraImage.sprite = helpImage;
         cameraImage.color = Color.white;
-        backButton.gameObject.SetActive(true);
+        backButton.transform.parent.gameObject.SetActive(true);
     }
 
     public void ExitButtonClick()
@@ -118,10 +166,17 @@ public class InterfaceManager : MonoBehaviour
         #endif
     }
 
+    public void SliderValueChanged(float value)
+    {
+        cameraController.speed = Mathf.RoundToInt(value);
+        sensitivitySlider.value = cameraController.speed;
+        sensitivityText.text = $"Mouse sensitivity: {cameraController.speed}";
+    }
+
     public void BackButtonClick()
     {
         cameraImage.color = Color.clear;
-        backButton.gameObject.SetActive(false);
+        backButton.transform.parent.gameObject.SetActive(false);
     }
 
     private IEnumerator PlayGameCoroutine()
@@ -277,39 +332,9 @@ public class InterfaceManager : MonoBehaviour
         }
     }
 
-    private void RestartGame()
+    private void Restart()
     {
-        inputsController.isPlaying = false;
-
-        // Reset player default values
-
-        bubble.transform.localPosition = new(0, 0.3f, 0);
-        bubble.transform.localRotation = new(0, 0, 0, 1);
-        Camera.main.transform.localPosition = new(0f, 0.3f, -cameraController.distance);
-        Camera.main.transform.localRotation = new(0, 0, 0, 1);
-        cameraController.ResetCameraValues();
-        mouseRotation.animator.speed = 0f;
-        mouseRotation.mouseTransform.localRotation = new(0, 0, 0, 1);
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        // Reset map
-
-        musicPlayer.Stop();
-        cheesesHandler.ResetCheeses();
-        cheesesCount = 0;
-        counterText.text = $"{cheesesCount}/20 Cheeses";
-        // Reset UI
-
-        chronoText.color = Color.clear;
-        counterText.color = Color.clear;
-        speedometerText.color = Color.clear;
-        StopChrono();
-        ResetChrono();
-
-        // Start the '3, 2, 1, RUN!' countdown
-        
-        StartCoroutine(StartCountdown());
+        SceneManager.LoadScene(0);
     }
 
     private IEnumerator StartCountdown()
@@ -338,7 +363,7 @@ public class InterfaceManager : MonoBehaviour
         }
 
         cameraImage.sprite = goText;
-        inputsController.isPlaying = true;
+        InputsController.isPlaying = true;
         musicPlayer.Play();
 
         StartCoroutine(FadeImage(cameraImage, null, null, 0f, 1f));

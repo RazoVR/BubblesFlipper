@@ -25,7 +25,7 @@ public class BallController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inputsController.isPlaying)
+        if (InputsController.isPlaying)
         {
             // Move the ball
 
