@@ -10126,6 +10126,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1662230436}
     - target: {fileID: 654596904991415580, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: restartImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 127421339691ee044949d7fde11fd905, type: 3}
+    - target: {fileID: 654596904991415580, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: mouseRotation
       value: 
       objectReference: {fileID: 1355315538}
@@ -10336,6 +10340,18 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4283453520
       objectReference: {fileID: 0}
+    - target: {fileID: 4261355501135264815, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -130
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485362613905431942, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485362613905431942, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 1174405119
+      objectReference: {fileID: 0}
     - target: {fileID: 5743372352343374809, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 340
@@ -10344,6 +10360,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1355315535}
+    - target: {fileID: 7195591581403270075, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195591581403270075, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 1174405119
+      objectReference: {fileID: 0}
     - target: {fileID: 7318745051156552121, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_Color.b
       value: 0.78431374
@@ -10371,6 +10395,10 @@ PrefabInstance:
     - target: {fileID: 9140234561507774136, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163370676216150699, guid: 4c14291752d0b584597901cd7683bc0e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12916,6 +12944,8 @@ GameObject:
   - component: {fileID: 3333398877519512724}
   - component: {fileID: 5129993843934152165}
   - component: {fileID: 5129993843934152166}
+  - component: {fileID: 5129993843934152167}
+  - component: {fileID: 5129993843934152168}
   m_Layer: 0
   m_Name: Saule
   m_TagString: Untagged
@@ -13284,6 +13314,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.3367777, y: 6.906235, z: 0.00000059604633}
   m_Center: {x: 1.0837014, y: -1.2952801, z: -1.4171362}
+--- !u!65 &5129993843934152167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774941236663195029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7, y: 5, z: 1}
+  m_Center: {x: 0.9, y: -2.5, z: -1}
+--- !u!114 &5129993843934152168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774941236663195029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8580ff25f7d048749bee4da61ce5ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interfaceManager: {fileID: 1825152807}
 --- !u!33 &5255621845977518791
 MeshFilter:
   m_ObjectHideFlags: 0

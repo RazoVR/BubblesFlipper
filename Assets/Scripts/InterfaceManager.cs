@@ -37,6 +37,7 @@ public class InterfaceManager : MonoBehaviour
     public TMP_Text exitText;
 
     [Header("Sprites References")]
+    public Sprite restartImage;
     public Sprite helpImage;
     public Sprite number3;
     public Sprite number2;

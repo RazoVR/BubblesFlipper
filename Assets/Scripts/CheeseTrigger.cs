@@ -4,12 +4,15 @@ public class CheeseTrigger : MonoBehaviour
 {
     public InterfaceManager interfaceManager;
 
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
-        interfaceManager.cheesesCount++;
-        interfaceManager.incrementCheeses = true;
-        interfaceManager.soundEffectPlayer.Play();
+        if (other.gameObject.name == "Bubble")
+        {
+            interfaceManager.cheesesCount++;
+            interfaceManager.incrementCheeses = true;
+            interfaceManager.soundEffectPlayer.Play();
 
-        gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
     }
 }
