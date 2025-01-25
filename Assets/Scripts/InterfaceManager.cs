@@ -116,7 +116,7 @@ public class InterfaceManager : MonoBehaviour
     private void FixedUpdate()
     {
         //  Le bon pedometer :3
-        speedometerText.text = $"{Math.Round(BallController.currentSpeed, 2)} cm per second";
+        speedometerText.text = $"{Math.Round(BallController.currentSpeed, 2)} cm/s";
     }
 
     private IEnumerator Introduction()
